@@ -58,7 +58,7 @@ public final class Notifications {
         )
         
         UNUserNotificationCenter.current().add(request)
-        logger.info("Notification added at \(hour):\(minute).")
+        logger.info("Single notification added at \(hour):\(minute).")
     }
     
     //MARK: - Notifications
@@ -72,7 +72,6 @@ public final class Notifications {
         let allowed = try await Notifications.requestNotificationPermission(options: [.alert, .badge, .sound])
         
         if allowed {
-            logger.info("Notification permission set.")
             addNotification(
                 notificationID: notificationID,
                 title: title,
@@ -81,7 +80,7 @@ public final class Notifications {
                 minute: minute
             )
         }
-        
+        logger.info("Repeating notification permissions: \(allowed).")
         return allowed
     }
     
@@ -107,7 +106,7 @@ public final class Notifications {
         )
         
         UNUserNotificationCenter.current().add(request)
-        logger.info("Notification added at \(hour):\(minute).")
+        logger.info("Notification added at \(hour):\(minute) with ID: \(notificationID.uuidString)")
     }
 
     public static func removeNotifications(with id: UUID) {
