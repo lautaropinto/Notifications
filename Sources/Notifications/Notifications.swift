@@ -16,7 +16,7 @@ private let logger = Logger(
 
 public final class Notifications {
     
-    static func requestNotificationPermission(options: UNAuthorizationOptions = []) async throws -> Bool {
+    public static func requestNotificationPermission(options: UNAuthorizationOptions = []) async throws -> Bool {
         let notificationCenter = UNUserNotificationCenter.current()
         
         let result = try await notificationCenter.requestAuthorization(
@@ -26,7 +26,7 @@ public final class Notifications {
         return result
     }
     
-    static func addSingleNotification(
+    public static func addSingleNotification(
         notificationID: UUID,
         title: String,
         subtitle: String,
@@ -62,7 +62,7 @@ public final class Notifications {
     }
     
     //MARK: - Notifications
-    static func addRepeatingNotification(
+    public static func addRepeatingNotification(
         notificationID: UUID,
         title: String,
         subtitle: String,
@@ -110,7 +110,7 @@ public final class Notifications {
         logger.info("Notification added at \(hour):\(minute).")
     }
 
-    static func removeNotifications(with id: UUID) {
+    public static func removeNotifications(with id: UUID) {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [id.uuidString])
         logger.info("Notification \(id.uuidString) removed.")
