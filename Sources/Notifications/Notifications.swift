@@ -14,7 +14,7 @@ private let logger = Logger(
     category: "Notifications Package"
 )
 
-final class Notifications {
+public final class Notifications {
     
     static func requestNotificationPermission(options: UNAuthorizationOptions = []) async throws -> Bool {
         let notificationCenter = UNUserNotificationCenter.current()
